@@ -1,0 +1,21 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sealab"
+version = "0.1.0"
+description = "Utilities for plotting and other routine tasks used across the SEA Lab"
+readme = "README.md"
+license-files = ["LICENSE"]
+requires-python = ">=3.8"
+dependencies = ["matplotlib"]
+
+# The Python utilities stay in pyplotutilities/ so projects that import them
+# from a submodule keep working; installed, they're sealab.pyplotutils
+[tool.hatch.build.targets.wheel]
+packages = ["pyplotutilities"]
+exclude = ["pyplotutilities/colorstutorial.py"]
+
+[tool.hatch.build.targets.wheel.sources]
+"pyplotutilities" = "sealab/pyplotutils"
